@@ -54,4 +54,16 @@ $app->post('/myform', function (Request $request, Response $response, $args) {
 });
 
 
+
+$app->get('/chart', function (Request $request, Response $response, $args) {
+    $twig = Twig::get();
+    $response->getBody()->write($twig->render('chart.html.twig', ['mydata' => [12, 19, 3, 8, 2, 3]]));
+
+    return $response;
+});
+
+
+
+
+
 $app->run();

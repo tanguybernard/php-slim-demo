@@ -1,0 +1,59 @@
+{% set dataChart = mydata %}
+
+<div>
+
+    <canvas id="myChart"></canvas>
+</div>
+
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+
+    let backgroundColor = "rgba(0,247,255,0.5)";
+    let dataChart = {{ dataChart|json_encode }};
+    let chartData = {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                //data: [12, 19, 3, 5, 2, 3],
+                data: dataChart || [],
+                borderWidth: 1,
+                borderColor: "rgba(255,0,0,0.5)",
+                backgroundColor,
+
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            onClick: function(c,i) {
+                e = i[0];
+                console.log(e._index)
+                var x_value = this.data.labels[e._index];
+                var y_value = this.data.datasets[0].data[e._index];
+                console.log(x_value);
+                console.log(y_value);
+            }
+        }
+    };
+
+    const canvas = document.getElementById('myChart');
+    let myChart = new Chart(canvas, chartData);
+
+    canvas.onclick = function(evt) {
+        var activePoint = myChart.getElementAtEvent(evt)[0];
+        var data = activePoint._chart.data;
+        var datasetIndex = activePoint._datasetIndex;
+        var label = data.datasets[datasetIndex].label;
+        var value = data.datasets[datasetIndex].data[activePoint._index];
+        console.log(label, value);
+    };
+</script>
