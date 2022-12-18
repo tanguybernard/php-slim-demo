@@ -1,0 +1,55 @@
+{% set dataChart = mydata %}
+
+<div>
+
+    <canvas id="myChart"></canvas>
+</div>
+
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+
+
+    var dataFirst = {
+        label: "Interet",
+        data: [333.33, 332.42, 333.51, 150, 2.01],
+        lineTension: 0,
+        fill: false,
+        borderColor: 'red'
+    };
+
+    var dataSecond = {
+        label: "Amortissement",
+        data: [272.64, 273.55, 274.46, 455.97, 603.96],
+        lineTension: 0,
+        fill: false,
+        borderColor: 'blue'
+    };
+
+    var speedData = {
+        labels: ["1", "2", "3", "230", "290"],
+        datasets: [dataFirst, dataSecond]
+    };
+
+    var chartOptions = {
+        legend: {
+            display: true,
+            position: 'top',
+            labels: {
+                boxWidth: 80,
+                fontColor: 'black'
+            }
+        }
+    };
+
+    const canvas = document.getElementById('myChart');
+
+    var lineChart = new Chart(canvas, {
+        type: 'line',
+        data: speedData,
+        options: chartOptions
+    });
+</script>
