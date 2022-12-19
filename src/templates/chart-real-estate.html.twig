@@ -1,8 +1,8 @@
 {% set dataChart = mydata %}
 
-<div>
-
-    <canvas id="myChart"></canvas>
+<div style="display: flex; flex-direction: row">
+    <div style="flex: 1 1 25%;  "><canvas id="myChart"></canvas></div>
+    <div style="flex: 1 1 25%;"><canvas id="cdr"></canvas></div>
 </div>
 
 <script
@@ -13,24 +13,27 @@
     const ctx = document.getElementById('myChart');
 
 
-    var dataFirst = {
+    const dataFirst = {
         label: "Interet",
-        data: [333.33, 332.42, 333.51, 150, 2.01],
+        data: [333, 306, 278, 251, 223, 196, 168, 140, 112, 84, 56, 28],
         lineTension: 0,
         fill: false,
         borderColor: 'red'
     };
 
-    var dataSecond = {
+    const dataSecond = {
         label: "Amortissement",
-        data: [272.64, 273.55, 274.46, 455.97, 603.96],
+        data: [8181, 8208, 8236, 8263, 8291, 8318, 8346, 8374, 8402, 8430, 8458, 8486],
         lineTension: 0,
         fill: false,
         borderColor: 'blue'
     };
 
-    var speedData = {
-        labels: ["1", "2", "3", "230", "290"],
+
+
+
+    const speedData = {
+        labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
         datasets: [dataFirst, dataSecond]
     };
 
@@ -52,4 +55,68 @@
         data: speedData,
         options: chartOptions
     });
+
+
+    // Stacked Bar Chart
+    // ----------------------------------------------------------- //
+
+
+    const data = {
+        labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+        datasets: [
+            {
+                label: 'Interet',
+                data: [333, 306, 278, 251, 223, 196, 168, 140, 112, 84, 56, 28],
+                backgroundColor: "#e55555",
+                stack: 'Stack 0',
+
+            },
+            {
+                label: 'Amortissement',
+                data: [8181, 8208, 8236, 8263, 8291, 8318, 8346, 8374, 8402, 8430, 8458, 8486],
+                backgroundColor: "#5593e5",
+                stack: 'Stack 0',
+
+            },
+            {
+                label: 'CDR',
+                data: [91818, 83609, 75373, 67109, 58818, 50499, 42152, 33778, 25376, 16945, 8487, 0],
+                backgroundColor: "#55e56d",
+                stack: 'Stack 0',
+
+            },
+        ]
+    };
+
+    const config = {
+        type: 'bar',
+        data: data,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Chart.js Bar Chart - Stacked'
+                },
+            },
+            responsive: true,
+            interaction: {
+                intersect: false,
+            },            scales: {
+                x: {
+                    stacked: true,
+                },
+                y: {
+                    stacked: true
+                }
+            }
+        }
+    };
+
+
+    //100000 euros, 4%  sur 1 an
+
+
+    const canvasCdr = document.getElementById('cdr');
+
+    new Chart(canvasCdr, config);
 </script>
