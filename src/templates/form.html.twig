@@ -12,13 +12,23 @@
 {# Ici vous mettez vos codes HTML et balises Twig au besoin #}
 {% block body %}
 
-<div class="container-fluid text-center">
+<div class="container text-center">
     <h1>Mon super titre H1</h1>
     <h2>Mon second titre</h2>
-    <form action="/myform" method="post">
-        Name: <input type="text" name="name"><br>
-        E-mail: <input type="text" name="email"><br>
-        <input type="submit">
+    <form class="form-horizontal" action="/myform" method="post" >
+        <div class="form-outline mb-4">
+            <label class="control-label" for="email">Email:</label>
+            <div>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+            </div>
+        </div>
+        <div class="form-outline mb-4">
+            <label class="control-label " for="email">Name:</label>
+            <div>
+                <input type="text" class="form-control" name="name">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 {% endblock %}
