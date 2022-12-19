@@ -1,10 +1,11 @@
 # Exercise 3
 
-## Statement
+## Objective
 
 - Create a real estate advertisement site offering a financing plan to visitors.
 - Create a form to enter the data needed to calculate the loan.
 
+## Statement
 
 ![Real Estate Loan](img/real_estate_loan.png)
 

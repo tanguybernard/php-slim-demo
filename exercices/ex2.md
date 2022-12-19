@@ -5,12 +5,14 @@
 - Explain dependency injection
 - Use dependency injection
 
-## Install PHP-DI
+## Statement
+
+### Install PHP-DI
 
     composer require php-di/php-di
 
 
-## Declare into slim
+### Declare into slim
 
     use DI\ContainerBuilder;
     use Slim\Factory\AppFactory;
@@ -21,7 +23,7 @@
     AppFactory::setContainer($containerBuilder->build());
     $app = AppFactory::create();
 
-## Config
+### Config
 
     $containerBuilder->addDefinitions([
          Environment::class => function () : Environment{
@@ -35,7 +37,7 @@
     ]);
 
 
-## Use
+### Use
 
 Controller
 

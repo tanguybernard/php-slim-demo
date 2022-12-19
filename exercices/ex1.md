@@ -3,7 +3,8 @@
 
 ## Objective
 
-Employ a template engine.
+- Explain how template engine work.
+- Employ a template engine.
 
 ### Install Twig
 
