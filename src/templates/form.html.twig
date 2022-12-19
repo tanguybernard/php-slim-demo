@@ -4,11 +4,17 @@
 {# Titre de la page #}
 {% block title %}Mon titre{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
+{% endblock %}
+
+
 {# Ici vous mettez vos codes HTML et balises Twig au besoin #}
 {% block body %}
 
 <div class="container-fluid text-center">
     <h1>Mon super titre H1</h1>
+    <h2>Mon second titre</h2>
     <form action="/myform" method="post">
         Name: <input type="text" name="name"><br>
         E-mail: <input type="text" name="email"><br>
