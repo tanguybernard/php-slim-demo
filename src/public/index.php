@@ -2,12 +2,25 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
+use App\Controller\FormPageController;
 use Config\TwigFactory;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
+use DI\ContainerBuilder;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
+$containerBuilder = new ContainerBuilder();
+// configure PHP-DI here
+$containerBuilder->addDefinitions([
+    Environment::class => function () : Environment{
+        $loader = new FilesystemLoader(__DIR__ . '/../templates');
+        return new Environment($loader);
+    }
+]);
 
+AppFactory::setContainer($containerBuilder->build());
 $app = AppFactory::create();
 
 
@@ -42,6 +55,9 @@ $app->get('/form', function (Request $request, Response $response, $args) {
 
     return $response;
 });
+
+
+$app->get('/form2', FormPageController::class);
 
 $app->post('/myform', function (Request $request, Response $response, $args) {
 
