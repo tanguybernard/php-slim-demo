@@ -1,9 +1,15 @@
 # php-slim-demo
 
+## Credits
 
-## Exo 1
+Twig
 
-### Adding Twig to a Slim Application
+https://zetcode.com/php/twig/
 
+Twig with slim
 
-    composer require "twig/twig:^3.0"
+https://www.twilio.com/blog/adding-twig-as-a-view-renderer-to-slim-in-php
+
+Dependency injection with slim
+
+https://akrabat.com/dependency-injection-in-slim-4/
