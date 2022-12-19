@@ -19,4 +19,15 @@ $app->get('/hello/{name}', function (Request $request, Response $response, $args
     return $response;
 });
 
+$app->get('/template-with-ob-start', function(Request $request, Response $response, $args){
+
+    ob_start();
+    $title = "Page de test" ;
+    $contenu = "Lorem ipsum blabla";
+    include '../templates_with_ob_start/template.php' ;
+    $content = ob_get_clean();
+    $response->getBody()->write($content);
+    return $response;
+});
+
 $app->run();
