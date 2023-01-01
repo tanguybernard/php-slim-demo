@@ -1,11 +1,7 @@
 <?php
-
+session_start();
 require __DIR__ . '/../vendor/autoload.php';
 
-use App\Controller\FormPageController;
-use Config\TwigFactory;
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use DI\ContainerBuilder;
 use Twig\Environment;
@@ -24,50 +20,17 @@ AppFactory::setContainer($containerBuilder->build());
 $app = AppFactory::create();
 
 
-$app->get('/', function (Request $request, Response $response, $args) {
-    $response->getBody()->write("Hello world!");
-    return $response;
-});
+// Setup a supersimple auth checker, intercepting http calls with this middleware
+// and checking that only allowed routes can be navigated without auth
+$loggedInMiddleware = require(__DIR__.'/../app/middleware/LoggedInMiddleware.php');
+$app->add($loggedInMiddleware);
 
+// Add Routing Middleware (needed to use RouteContext previously in middleware, for example)
+$app->addRoutingMiddleware();
 
-$app->get('/hello/{name}', function (Request $request, Response $response, $args) {
-    $name = $args['name'];
-    $response->getBody()->write("Hello, $name");
-    return $response;
-});
-
-$app->get('/template-with-ob-start', function(Request $request, Response $response, $args){
-
-    ob_start();
-    $title = "Page de test" ;
-    $contenu = "Lorem ipsum blabla";
-    include '../templates_with_ob_start/template.php' ;
-    $content = ob_get_clean();
-    $response->getBody()->write($content);
-    return $response;
-});
-
-
-$app->get('/form', function (Request $request, Response $response, $args) {
-    $twig = TwigFactory::get();
-    $response->getBody()->write($twig->render('form.html.twig', ['name' => 'John Doe',
-        'occupation' => 'gardener']));
-
-    return $response;
-});
-
-
-$app->get('/form2', FormPageController::class);
-
-$app->post('/myform', function (Request $request, Response $response, $args) {
-
-    $form = $request->getParsedBody();//[name]
-    //var_dump($form);
-    //var_dump($form['name']);
-    //var_dump($form['email']);
-
-    return $response;
-});
+// Register routes
+$routes = require __DIR__ . '/../app/routes.php';
+$routes($app);
 
 
 $app->run();
