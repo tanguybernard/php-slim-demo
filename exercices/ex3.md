@@ -13,42 +13,52 @@
 - Display the monthly payment excluding insurance as well as the amortization table containing, among other things, the remaining capital due and the interest for each period.
 
 
-Formule de calcul des mensualités de prêt conso
+Formula for calculating monthly consumer loan payments
 
 
     m = [C × (t/12)] / [1 – (1 + (t/12)^-(12 × n))]
 
-Calculons la mensualité d'un crédit à remboursement constant de 100 000 euros au taux annuel proportionnel de 4% (le taux nominal que l'organisme de crédit nous donne), sur une durée de 20 ans soit 240 mois.
-
-En appliquant la formule nous obtenons :
-
-    [100000 × 0,04/12] / [1−(1+ (0,04/12))^-(12*20)] = 605,98€
-
-remarque : dans la formule 4% devient 4/100 = 0,04
+    m : monthly payment (mensualité)
+    C : amount (montant)
+    t : the rate (taux)
+    n : number of years (nombre d'années)
 
 
+Let's calculate the monthly payment for a constant repayment loan of 100,000 euros at an annual proportional rate of 4% over a period of 20 years (240 months).
 
-Cout total interet
+Applying the formula we get :
+
+    m = [100000 × 0,04/12] / [1−(1+ (0,04/12))^-(12*20)] 
+
+    m = 605,98€
+
+
+note: in the formula 4% becomes 4/100 = 0.04
+
+
+
+Total cost of interest
 
     12*n*m-C
 
 
-Si vous avez emprunté 100 000 € sur 20 ans, et que votre mensualité est de 605,98 €, le coût total en intérêts est de :
+If you borrowed 100,000€ over 20 years, and your monthly payment is 605.98€, the total interest cost is :
 
     12*20*605,98-100000 = 45440 €
 
 
-Calculer les intérêt d’un prêt amortissable
+Calculate the interest on an amortizing loan:
 
 
 
-1ère mensualité
+1st monthly payment
 
 
     (100 000 € * 4 %) / 12 = 333,33 €
 
 
-Calulons le capital retant du :
+Let's calculate the return capital of (Capital restant du):
+
 
     605,98 -333,33 = 272,64 €
     
@@ -56,13 +66,14 @@ Calulons le capital retant du :
     
     Capital Retant du 99727 €
 
-2ème mensualité
+2nd monthly payment
 
     (99727 € * 4 %) / 12 = 332,42 € 
 
 
+-------
 
-En résumé
+En résumé :
 
 
 Prêt à taux fixe
@@ -79,10 +90,5 @@ Prêt à taux fixe
 |    3     | 331,51 € |    274,46 €    |         99 179,00 €         |  605,98 €  |
 |    ..    |    ..    |       ..       |             ..              |     ..     |
 |   240    |  2,01 €  |    603,96 €    |             0 €             |  605,98 €  |
-
-
-
-
-
 
 
