@@ -23,7 +23,7 @@ class FormPageController implements RequestHandlerInterface
     {
 
         $response = new Response();
-        $response->getBody()->write($this->twig->render('form.html.twig'));
+        $response->getBody()->write($this->twig->render('form.html.twig', ["title" => "Avec DI"]));
 
         return $response;
     }

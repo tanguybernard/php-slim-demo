@@ -51,7 +51,7 @@ $app->get('/template-with-ob-start', function(Request $request, Response $respon
 $app->get('/form', function (Request $request, Response $response, $args) {
     $twig = TwigFactory::get();
     $response->getBody()->write($twig->render('form.html.twig', ['name' => 'John Doe',
-        'occupation' => 'gardener']));
+        'occupation' => 'gardener', "title" => "Sans DI"]));
 
     return $response;
 });
